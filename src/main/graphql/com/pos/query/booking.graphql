@@ -1,0 +1,11 @@
+query getBooking($key: Key!) {
+    booking(key: $key) {
+        ...bookingFields
+    }
+}
+
+query findBookings($filter: FilterBookings) {
+    bookings(filter: $filter) {
+        ...bookingFields
+    }
+}

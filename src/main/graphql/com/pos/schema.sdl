@@ -1,0 +1,231 @@
+directive @validate(rule: String!) on INPUT_FIELD_DEFINITION
+type Booking implements Node {
+  key: Key!
+  channel: BookingChannel!
+  facilities: [BookingFacility!]!
+  customer: BookingCustomer!
+  totalAmount: Int!
+  discountAmount: Int!
+  payableAmount: Int!
+  status: String!
+  timeoutAt: DateTime!
+  paidAt: DateTime
+  payments: [Payment!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum BookingChannel {
+  ONLINE
+  OFFLINE
+}
+
+type BookingCustomer {
+  key: String
+  name: String!
+  email: String!
+  phoneNo: String!
+  icNo: String
+}
+
+type BookingFacility {
+  key: Key!
+  name: String!
+  category: SportCategory!
+  type: FacilityType!
+  playtimes: [BookingPlaytime!]!
+}
+
+type BookingPlaytime {
+  key: Key!
+  playtimes: [BookingPlaytime!]!
+}
+
+input CreateBooking {
+  date: Date!
+  channel: BookingChannel!
+  customer: CreateBookingCustomer!
+  facilities: [CreateBookingFacility]!
+}
+
+input CreateBookingCustomer {
+  name: String!
+  email: String!
+  phoneNo: String!
+}
+
+input CreateBookingFacility {
+  key: Key!
+  playtimes: [Key!]!
+}
+
+input CreateFacility {
+  name: String!
+  type: FacilityType!
+  duration: Duration!
+  category: SportCategory!
+}
+
+input CreatePlaytime {
+  date: Date!
+  time: String!
+}
+
+scalar Date
+
+scalar DateTime
+
+input DisablePlaytimes {
+  keys: [Key!]!
+}
+
+scalar Duration
+
+type Facility implements Node {
+  key: Key!
+  name: String!
+  category: SportCategory!
+  type: FacilityType!
+  duration: Duration!
+  pricings: [Pricing!]!
+  playtimes(date: Date): [Playtime!]!
+  isActive: Boolean!
+  createdAt: DateTime!
+}
+
+input FacilityPricing {
+  price: Float!
+}
+
+enum FacilityType {
+  WOODEN_COURT
+  RUBBER_COURT
+}
+
+input FilterBookings {
+  key: Key
+}
+
+input FilterFacilities {
+  category: String!
+}
+
+scalar Int64
+
+scalar Key
+
+scalar KSUID
+
+input Login {
+  origin: String!
+  username: String!
+  password: String!
+}
+
+type Mutation {
+  login(input: Login): Token!
+  updateProfile(input: UpdateProfile!): Profile!
+  createFacility(input: CreateFacility!): Facility!
+  updateFacility(key: Key!, input: UpdateFacility!): Facility!
+  disableFacility(key: Key!): Facility!
+  createPlaytime(key: Key!, input: CreatePlaytime!): Playtime!
+  disablePlaytimes(input: DisablePlaytimes!): Boolean!
+  createBooking(input: CreateBooking!): Booking!
+  confirmBooking(key: Key!): Booking!
+  cancelBooking(key: Key!): Booking!
+  refundBooking(key: Key!): Booking!
+}
+
+interface Node {
+  key: Key!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Payment {
+  key: Key!
+}
+
+type Playtime {
+  key: Key!
+  date: Date!
+  time: String!
+  duration: Duration!
+}
+
+type PlaytimeConnection {
+  edges: [PlaytimeEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+type PlaytimeEdge {
+  node: Playtime!
+}
+
+type Pricing {
+  weekday: Int!
+  startTime: DateTime!
+  endTime: DateTime!
+}
+
+type Profile {
+  key: String!
+  name: String!
+  imageUrl: String!
+  phoneNo: String!
+  address: String!
+  stateCode: String!
+  workingHours: [WorkingHour!]!
+  isActive: Boolean!
+  amenities: [String!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Query {
+  profile: Profile!
+  facilities(filter: FilterFacilities): [Facility!]!
+  facility(key: Key!): Facility!
+  booking(key: Key!): Booking!
+  bookings(filter: FilterBookings): [Booking!]!
+  availableFacilities(input: QueryAvailableFacilities!): [Facility!]!
+}
+
+input QueryAvailableFacilities {
+  date: Date!
+}
+
+enum SportCategory {
+  BADMINTON
+  FUTSAL
+  TABLE_TENNIS
+}
+
+type Token {
+  accessToken: String!
+  expiresIn: Int64!
+}
+
+input UpdateFacility {
+  name: String!
+  duration: Duration!
+  category: SportCategory!
+}
+
+input UpdateProfile {
+  name: String!
+  imageUrl: String!
+  address: String!
+  phoneNo: String!
+}
+
+type WorkingHour {
+  time: Int64!
+}
+

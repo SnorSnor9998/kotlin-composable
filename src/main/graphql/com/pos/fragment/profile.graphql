@@ -1,0 +1,15 @@
+fragment profileFields on Profile {
+    key
+    name
+    imageUrl
+    phoneNo
+    address
+    stateCode
+    workingHours {
+        time
+    }
+    amenities
+    isActive
+    updatedAt
+    createdAt
+}

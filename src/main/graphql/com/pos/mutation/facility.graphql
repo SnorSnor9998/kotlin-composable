@@ -1,0 +1,17 @@
+mutation createFacility($input: CreateFacility!) {
+    createFacility(input: $input) {
+        ...facilityFields
+    }
+}
+
+mutation updateFacility($key: Key!, $input: UpdateFacility!) {
+    updateFacility(key: $key, input: $input) {
+        ...facilityFields
+    }
+}
+
+mutation disableFacility($key: Key!) {
+    disableFacility(key: $key) {
+        ...facilityFields
+    }
+}

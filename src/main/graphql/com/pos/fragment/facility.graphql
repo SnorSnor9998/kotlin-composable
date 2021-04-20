@@ -1,0 +1,20 @@
+fragment facilityFields on Facility {
+    key
+    category
+    name
+    type
+    duration
+    pricings {
+        weekday
+        startTime
+        endTime
+    }
+     playtimes(date: date) {
+         key
+         date
+         time
+         duration
+     }
+    isActive
+    createdAt
+}

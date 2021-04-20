@@ -1,0 +1,23 @@
+mutation createBooking($input: CreateBooking!) {
+    createBooking(input: $input) {
+        ...bookingFields
+    }
+}
+
+mutation confirmBooking($key: Key!) {
+    confirmBooking(key: $key) {
+        ...bookingFields
+    }
+}
+
+mutation cancelBooking($key: Key!) {
+    cancelBooking(key: $key) {
+        ...bookingFields
+    }
+}
+
+mutation refundBooking($key: Key!) {
+    refundBooking(key: $key) {
+        ...bookingFields
+    }
+}

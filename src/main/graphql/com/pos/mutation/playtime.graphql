@@ -1,0 +1,9 @@
+mutation createPlaytime($key: Key!, $input: CreatePlaytime!) {
+    createPlaytime(key: $key, input: $input) {
+        ...playtimeFields
+    }
+}
+
+mutation disablePlaytimes($input: DisablePlaytimes!) {
+    disablePlaytimes(input: $input)
+}

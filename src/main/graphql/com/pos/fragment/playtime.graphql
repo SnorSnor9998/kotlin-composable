@@ -1,0 +1,6 @@
+fragment playtimeFields on Playtime {
+    key
+    date
+    time
+    duration
+}

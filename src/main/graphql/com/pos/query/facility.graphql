@@ -1,0 +1,17 @@
+query findFacilities($filter: FilterFacilities, $date: Date!) {
+  facilities(filter: $filter) {
+    ...facilityFields
+  }
+}
+
+query getFacility($key: Key!, $date: Date!) {
+  facility(key: $key) {
+    ...facilityFields
+  }
+}
+
+query availableFacilities($input: QueryAvailableFacilities!) {
+  availableFacilities(input: $input) {
+    ...facilityFields
+  }
+}

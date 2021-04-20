@@ -1,0 +1,14 @@
+{
+  "name": "Untitled GraphQL Schema",
+  "schemaPath": "src/main/kotlin/graph/com/pos/query/schema.sdl",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "https://sb-graph.wetix.my/query",
+        "headers": {
+          "user-agent": "JS GraphQL"
+        }
+      }
+    }
+  }
+}

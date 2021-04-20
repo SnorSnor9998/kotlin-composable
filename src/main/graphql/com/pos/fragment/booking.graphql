@@ -1,0 +1,34 @@
+fragment bookingFields on Booking {
+    key
+    channel
+    facilities {
+        key
+        name
+        category
+        type
+#        playtimes {
+#            key
+#            playtimes {
+#                key
+#                date
+#                time
+#                duration
+#            }
+#        }
+    }
+    customer {
+        key
+        name
+        email
+        phoneNo
+        icNo
+    }
+    totalAmount
+    discountAmount
+    payableAmount
+    status
+    timeoutAt
+    paidAt
+    createdAt
+    updatedAt
+}
