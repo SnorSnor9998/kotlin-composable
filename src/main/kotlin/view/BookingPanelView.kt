@@ -78,10 +78,10 @@ fun BookingPanelView(cartViewModel: MutableState<CartViewModel>) {
         Text("", modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
         RoundButton("Search", onClick = {
 
-          println(date.value)
-          println(time.value)
-          println(duration.value)
-          println(category.value)
+
+          // cartViewModel.value.searchCourt(date.value,time.value,duration.value,category.value)
+
+
 
         }, Modifier.fillMaxWidth().padding(8.dp).height(40.dp))
 

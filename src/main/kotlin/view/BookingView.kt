@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import view.Pos.PosHost
 import viewModel.CartViewModel
 
 @ExperimentalFoundationApi
@@ -27,7 +28,7 @@ fun BookingView(navControl: MutableState<Int>) {
 
   Row {
 
-    val innerNavControl = remember { mutableStateOf(Config.Navigate.PRODUCT_MGN) }
+    val innerNavControl = remember { mutableStateOf(Config.Navigate.POS) }
 
     SiteNavigationView(innerNavControl)
 
@@ -38,6 +39,7 @@ fun BookingView(navControl: MutableState<Int>) {
       Config.Navigate.MERCHANT_PROFILE -> MerchantProfileView()
       Config.Navigate.SIGNOUT -> navControl.value = Config.Navigate.LOGIN
       Config.Navigate.PRODUCT_MGN -> ProductManagementView()
+      Config.Navigate.POS -> PosHost()
     }
 
 

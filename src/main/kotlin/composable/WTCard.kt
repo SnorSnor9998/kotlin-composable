@@ -33,7 +33,7 @@ import viewModel.CartViewModel
 @Composable
 fun CardList(cartViewModel: MutableState<CartViewModel>) {
 
-  val numbers = (0..15).toList()
+  val numbers = (0..10).toList()
   var r = 0
 
   LazyVerticalGrid(
